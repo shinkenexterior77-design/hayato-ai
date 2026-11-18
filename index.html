@@ -1,108 +1,20 @@
 <!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#07111f">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="HAYATO AI">
-<link rel="manifest" href="./manifest.webmanifest">
-<title>HAYATO AI</title>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#061321"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="HAYATO AI"><link rel="manifest" href="./manifest.webmanifest"><title>HAYATO AI</title>
 <style>
-:root{color-scheme:dark;--bg:#06101d;--panel:#0b1a2b;--line:#183b54;--cyan:#62e7ff;--muted:#8ca9bc;--white:#eaf7ff}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 5%,#12324b 0,#071321 42%,#040a12 100%);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100svh}
-.app{max-width:720px;margin:auto;min-height:100svh;padding:env(safe-area-inset-top) 16px calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column}
-header{display:flex;align-items:center;justify-content:space-between;padding:18px 2px 12px;border-bottom:1px solid #17334a}
-.brand{font-weight:800;letter-spacing:.2em;font-size:18px}.sub{font-size:10px;letter-spacing:.18em;color:var(--muted);margin-top:4px}
-.status{font-size:11px;color:#8cebc4;border:1px solid #245c51;border-radius:30px;padding:7px 10px}
-.hero{text-align:center;padding:26px 0 18px}
-.orb{width:132px;height:132px;margin:0 auto 16px;border-radius:50%;position:relative;background:radial-gradient(circle at 35% 30%,#b9faff 0,#48cce9 8%,#0d668e 25%,#08263e 58%,#06101d 72%);box-shadow:0 0 24px #2ccfff66,0 0 70px #168ac455,inset 0 0 24px #9df5ff66;display:grid;place-items:center}
-.orb:before,.orb:after{content:"";position:absolute;inset:-10px;border:1px solid #50dfff77;border-radius:50%;transform:scaleY(.38) rotate(-18deg)}
-.orb:after{inset:-18px;transform:scaleY(.52) rotate(28deg);border-color:#3e9fca66}
-.orb span{font-size:27px;font-weight:300;letter-spacing:.08em;text-shadow:0 0 18px #8ff}
-.hero h1{font-size:23px;letter-spacing:.12em;margin:0}.hero p{color:var(--muted);font-size:12px;margin:8px 0 0}
-.quick{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
-.chip{background:#0b2032;border:1px solid #1b4962;color:#bdefff;border-radius:22px;padding:9px 12px;font-size:12px}
-.chat{flex:1;min-height:220px;max-height:43vh;overflow:auto;padding:12px 2px;display:flex;flex-direction:column;gap:12px}
-.msg{max-width:88%;padding:12px 14px;border-radius:16px;font-size:14px;line-height:1.65;white-space:pre-wrap}
-.bot{align-self:flex-start;background:#0c2031;border:1px solid #19445c;border-bottom-left-radius:5px}
-.user{align-self:flex-end;background:#123c55;border:1px solid #236887;border-bottom-right-radius:5px}
-.meta{font-size:10px;color:#83a7bb;margin-bottom:4px}
-.composer{border:1px solid #1b4058;background:#091827;border-radius:18px;padding:10px;display:flex;gap:8px;align-items:flex-end}
-textarea{flex:1;resize:none;min-height:42px;max-height:110px;background:transparent;border:0;outline:0;color:var(--white);font:inherit;padding:10px 4px}
-.iconbtn,.send{border:1px solid #28617b;background:#102b40;color:#c8f6ff;border-radius:13px;width:43px;height:43px;font-size:18px;flex:none}
-.send{background:linear-gradient(135deg,#147da5,#13506f);font-size:14px;font-weight:700}
-.iconbtn.active{background:#7d2536;border-color:#ef7890}
-.foot{display:flex;justify-content:space-between;color:#68899e;font-size:10px;padding:10px 4px}
-.notice{font-size:11px;color:#87a4b8;text-align:center;line-height:1.5;margin-top:8px}
-button{cursor:pointer}button:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
-@media(min-width:600px){.hero{padding-top:34px}.orb{width:150px;height:150px}.chat{max-height:440px}}
-</style>
-</head>
-<body>
-<div class="app">
-<header><div><div class="brand">HAYATO <span style="color:var(--cyan)">AI</span></div><div class="sub">PERSONAL INTELLIGENCE ASSISTANT</div></div><div class="status" id="status">● ONLINE</div></header>
-<section class="hero">
-  <div class="orb" aria-hidden="true"><span>H</span></div>
-  <h1>どうした？相棒。</h1>
-  <p>調査・分析・アイデア整理をサポートするよ。</p>
-  <div class="quick">
-    <button class="chip" data-prompt="今日やることを整理して">タスクを整理</button>
-    <button class="chip" data-prompt="情報を分析するときの進め方を教えて">分析を始める</button>
-    <button class="chip" data-prompt="ハヤト、できることを教えて">機能を確認</button>
-  </div>
-</section>
-<main class="chat" id="chat" aria-live="polite">
-  <div class="msg bot"><div class="meta">HAYATO</div>おはよう！ハヤトだよ。今日は何を一緒に進めようか？文字でも、マイクでも気軽に話しかけて。</div>
-</main>
-<form class="composer" id="form">
-  <button class="iconbtn" id="mic" type="button" aria-label="音声入力" title="音声入力">🎙</button>
-  <textarea id="input" rows="1" placeholder="ハヤトに話しかける…" aria-label="メッセージ"></textarea>
-  <button class="send" type="submit">送信</button>
-</form>
-<div class="notice" id="voiceNote">マイクは音声入力、読み上げは端末の音声機能を使うよ。</div>
-<div class="foot"><span>HAYATO CORE · PROTOTYPE 0.1</span><span id="clock"></span></div>
-</div>
+:root{color-scheme:dark;--a:#61e5fa;--b:#071421;--p:#0d2436;--t:#e7f8ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 10%,#17364a 0,#071421 47%,#040a12 100%);color:var(--t);font-family:system-ui,-apple-system,sans-serif}.app{max-width:720px;margin:auto;min-height:100svh;padding:calc(12px + env(safe-area-inset-top)) 15px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column}header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #204256;padding:8px 0 14px}.logo{font-size:19px;font-weight:800;letter-spacing:.18em}.logo span{color:var(--a)}.status{font-size:11px;color:#a2e6d2;border:1px solid #29594e;border-radius:20px;padding:6px 9px}.stage{position:relative;min-height:250px;display:grid;place-items:center;overflow:hidden}.halo{position:absolute;width:240px;height:240px;border:1px solid #26688477;border-radius:50%;box-shadow:inset 0 0 60px #1c80ae22;animation:turn 18s linear infinite}.halo:before,.halo:after{content:"";position:absolute;inset:23px;border:1px dashed #4ed7ff66;border-radius:50%}.halo:after{inset:-15px;border:1px solid #3b89a533;transform:scaleY(.57) rotate(28deg)}.core{width:144px;height:144px;border-radius:50%;position:relative;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#d3ffff 0%,#69e5f7 8%,#168db4 20%,#0a3d62 49%,#061526 70%);box-shadow:0 0 35px #24c5e999,inset -16px -18px 35px #020c1b;animation:float 4.4s ease-in-out infinite,glow 3.5s ease-in-out infinite;transition:filter .3s}.core:after{content:"";position:absolute;inset:-11px;border-radius:50%;border:2px solid #5be4fa99;transform:scaleY(.43) rotate(-25deg)}.core strong{font-size:45px;font-weight:300;color:#dffcff;text-shadow:0 0 20px white}.core.speaking{animation:float 1.3s ease-in-out infinite, speakPulse .42s ease-in-out infinite alternate}.core.listening{filter:hue-rotate(65deg);animation:float 2s ease-in-out infinite, speakPulse .8s ease-in-out infinite alternate}.core.thinking{animation:turn 4s linear infinite,glow 1.3s ease-in-out infinite}.stage-caption{position:absolute;bottom:7px;font-size:11px;letter-spacing:.22em;color:#92c9dc}.intro{text-align:center;margin:0 0 12px}.intro h1{font-size:22px;margin:0 0 6px}.intro p{font-size:12px;color:#91b3c4;margin:0}.controls{display:flex;justify-content:center;align-items:center;gap:10px;margin:13px 0}.toggle{font-size:12px;color:#bfefff;background:#0c2a3c;border:1px solid #26556d;border-radius:20px;padding:8px 13px;cursor:pointer}.toggle[aria-pressed="false"]{opacity:.6}.chat{flex:1;min-height:180px;max-height:38vh;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:9px 0}.msg{max-width:88%;padding:11px 13px;border-radius:15px;white-space:pre-wrap;line-height:1.6;font-size:14px}.msg.bot{align-self:flex-start;background:#0e2536;border:1px solid #1a4a60}.msg.user{align-self:flex-end;background:#16445d;border:1px solid #286782}.who{font-size:10px;color:#80b2c6;margin-bottom:4px}.entry{display:flex;gap:8px;background:#0a1d2c;border:1px solid #225069;border-radius:16px;padding:9px}textarea{flex:1;min-width:0;min-height:45px;max-height:100px;resize:vertical;background:transparent;color:white;border:0;outline:0;font:inherit;padding:9px 4px}.btn{border:1px solid #31718a;background:#12415c;border-radius:12px;color:#e0faff;padding:0 14px;min-height:44px;cursor:pointer}.btn.recording{background:#8c304b}footer{font-size:10px;color:#7d9dad;text-align:center;padding-top:10px}button:focus-visible,textarea:focus-visible{outline:2px solid white;outline-offset:2px}@keyframes float{0%,100%{transform:translateY(4px)}50%{transform:translateY(-8px)}}@keyframes glow{0%,100%{box-shadow:0 0 25px #24c5e966,inset -16px -18px 35px #020c1b}50%{box-shadow:0 0 55px #24c5e9cc,inset -16px -18px 35px #020c1b}}@keyframes speakPulse{to{transform:scale(1.075);box-shadow:0 0 70px #53efff}}@keyframes turn{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.halo,.core,.core.speaking,.core.listening,.core.thinking{animation:none!important}}
+</style></head><body><div class="app"><header><div class="logo">HAYATO <span>AI</span></div><div class="status" id="status">● READY</div></header><section class="stage" aria-label="動くAIコア"><div class="halo"></div><div class="core" id="core"><strong>H</strong></div><div class="stage-caption" id="coreLabel">STANDBY</div></section><div class="intro"><h1>任せろ、相棒。</h1><p>気軽に話しかけて。俺が一緒に考える。</p></div><div class="controls"><button class="toggle" id="voiceToggle" type="button" aria-pressed="true">🔊 読み上げ ON</button><button class="toggle" id="motionToggle" type="button" aria-pressed="true">◉ 動き ON</button></div><main class="chat" id="chat" aria-live="polite"><div class="msg bot"><div class="who">HAYATO</div>よう、相棒！ハヤトだ。何かあったら言ってくれ。できることから一緒に片づけよう。</div></main><form class="entry" id="form"><button type="button" class="btn" id="mic" aria-label="音声入力">🎙️</button><textarea id="input" rows="1" placeholder="ハヤトに話しかける…" aria-label="メッセージ"></textarea><button class="btn" type="submit">送信</button></form><footer>HAYATO AI · CORE v0.2 · 試作モード（本格AIは未接続）</footer></div>
 <script>
-const chat=document.getElementById('chat'), input=document.getElementById('input'), statusEl=document.getElementById('status');
-const form=document.getElementById('form'), mic=document.getElementById('mic');
-let listening=false, recognition=null;
-const add=(text,who)=>{const el=document.createElement('div');el.className='msg '+who;const meta=document.createElement('div');meta.className='meta';meta.textContent=who==='bot'?'HAYATO':'YOU';el.append(meta,document.createTextNode(text));chat.append(el);chat.scrollTop=chat.scrollHeight;return el};
-function localReply(q){
- const s=q.toLowerCase();
- if(/できること|機能/.test(q)) return '俺は会話、考えの整理、文章作成、画像や資料の読み解き、調査の段取りを手伝えるよ。今の試作版は画面と音声入力・読み上げが動く状態。外部AIやリアルタイム検索は、サーバーを接続すると使えるようになる。';
- if(/分析|調べ|調査|比較/.test(q)) return '了解。まず目的と条件を整理しよう。次に、確認できた事実・推測・未確認の点を分けて、複数の情報を照合する。分析したいテーマや資料を送ってくれたら、そこから一緒に進めるよ。※今は試作モードなので、最新情報の自動検索はまだ接続されていないよ。';
- if(/予定|タスク|やること/.test(q)) return '任せて。まず、今日中に必要なことを重要度と期限で分けよう。やることを箇条書きで送ってくれれば、優先順位をつけて整理するよ。';
- if(/おはよう|こんにちは|こんばんは/.test(q)) return 'おはよう！今日もよろしく。まず何から始めようか？';
- return '了解、相棒。内容を受け取ったよ。今の俺は画面・音声入力・読み上げが動く試作版なんだ。AIの本格的な回答やWeb検索を有効にするには、安全なサーバー経由でAI APIを接続する必要がある。次にやりたいことを具体的に教えて。';
-}
-async function askBackend(message){
- // Optional backend: POST {message} to /api/chat; server returns {reply}.
- try{
-   const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message})});
-   if(!r.ok) throw new Error('backend unavailable');
-   const data=await r.json(); if(data.reply) return data.reply;
- }catch(e){}
- return localReply(message);
-}
-function speak(text){
- if(!('speechSynthesis' in window)) return;
- speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=.94;u.pitch=.82;
- const voices=speechSynthesis.getVoices();const ja=voices.find(v=>v.lang==='ja-JP');if(ja)u.voice=ja;speechSynthesis.speak(u);
-}
-async function send(message){
- const q=message.trim();if(!q)return;add(q,'user');input.value='';input.style.height='auto';
- statusEl.textContent='● THINKING';const pending=add('考え中…','bot');
- const reply=await askBackend(q);pending.lastChild.textContent=reply;statusEl.textContent='● ONLINE';chat.scrollTop=chat.scrollHeight;speak(reply);
-}
-form.addEventListener('submit',e=>{e.preventDefault();send(input.value)});
-document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>send(b.dataset.prompt)));
-input.addEventListener('input',()=>{input.style.height='auto';input.style.height=Math.min(input.scrollHeight,110)+'px'});
+const $=id=>document.getElementById(id),chat=$('chat'),core=$('core'),status=$('status'),label=$('coreLabel');let voiceOn=true,motionOn=true,rec=null;
+function mode(s){core.classList.remove('speaking','listening','thinking');if(motionOn&&s!=='standby')core.classList.add(s);label.textContent=s.toUpperCase();status.textContent='● '+(s==='standby'?'READY':s.toUpperCase())}
+function add(t,role){let e=document.createElement('div');e.className='msg '+role;let w=document.createElement('div');w.className='who';w.textContent=role==='bot'?'HAYATO':'YOU';e.append(w,document.createTextNode(t));chat.append(e);chat.scrollTop=chat.scrollHeight;return e}
+function reply(q){if(/おはよう|こんにちは|こんばんは/.test(q))return 'よう、相棒！今日もよろしくな。まず何から始める？';if(/できること|機能/.test(q))return '今は試作版だ。文字のやり取り、音声入力、読み上げ、それから動くAIコアが使えるぜ。本格的な調査や推論はAI接続後に追加する予定だ。';if(/分析|調べ|検索/.test(q))return '任せろ。まず何を調べたいか教えてくれ。ちなみに今はまだWeb検索と本格AIは未接続だ。確認できた事実と推測を分けて考える仕組みは、次の開発で入れよう。';if(/予定|タスク|やること/.test(q))return '了解。やることと期限を教えてくれ。重要な順に整理するところから始めよう。';return '了解、相棒。話は受け取ったぜ。今は簡易応答の試作モードだけど、ハヤトらしい話し方と動きを試せるようにした。次にやりたいことを教えてくれ。'}
+function speak(t){if(!voiceOn||!('speechSynthesis'in window)){mode('standby');return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';u.rate=.93;u.pitch=.78;const v=speechSynthesis.getVoices().filter(x=>x.lang.startsWith('ja'));if(v.length)u.voice=v[0];u.onstart=()=>mode('speaking');u.onend=()=>mode('standby');u.onerror=()=>mode('standby');speechSynthesis.speak(u)}
+async function send(t){let q=t.trim();if(!q)return;add(q,'user');$('input').value='';mode('thinking');let e=add('考え中…','bot');let answer;try{let r=await fetch('./api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q})});if(!r.ok)throw Error('No API');let data=await r.json();answer=typeof data.reply==='string'?data.reply:reply(q)}catch{answer=reply(q)}e.lastChild.textContent=answer;speak(answer)}
+$('form').addEventListener('submit',e=>{e.preventDefault();send($('input').value)});
+$('voiceToggle').addEventListener('click',()=>{voiceOn=!voiceOn;$('voiceToggle').setAttribute('aria-pressed',String(voiceOn));$('voiceToggle').textContent='🔊 読み上げ '+(voiceOn?'ON':'OFF');if(!voiceOn&&'speechSynthesis'in window){speechSynthesis.cancel();mode('standby')}});
+$('motionToggle').addEventListener('click',()=>{motionOn=!motionOn;$('motionToggle').setAttribute('aria-pressed',String(motionOn));$('motionToggle').textContent='◉ 動き '+(motionOn?'ON':'OFF');if(!motionOn)core.classList.remove('speaking','listening','thinking')});
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(SR){recognition=new SR();recognition.lang='ja-JP';recognition.interimResults=false;recognition.onresult=e=>{input.value=e.results[0][0].transcript;send(input.value)};recognition.onerror=()=>{statusEl.textContent='● ONLINE';listening=false;mic.classList.remove('active')};recognition.onend=()=>{listening=false;mic.classList.remove('active');statusEl.textContent='● ONLINE'};}
-mic.addEventListener('click',()=>{if(!recognition){document.getElementById('voiceNote').textContent='このブラウザでは音声入力に対応していないみたい。文字入力を使ってね。';return;}if(listening){recognition.stop();return;}try{listening=true;mic.classList.add('active');statusEl.textContent='● LISTENING';recognition.start();}catch(e){listening=false;mic.classList.remove('active')}});
-document.getElementById('clock').textContent=new Intl.DateTimeFormat('ja-JP',{hour:'2-digit',minute:'2-digit'}).format(new Date());
-if('serviceWorker' in navigator && location.protocol.startsWith('http')) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-</script>
-</body></html>
+if(SR){rec=new SR();rec.lang='ja-JP';rec.interimResults=false;rec.onresult=e=>send(e.results[0][0].transcript);rec.onerror=()=>{mode('standby');$('mic').classList.remove('recording')};rec.onend=()=>{$('mic').classList.remove('recording');if(label.textContent==='LISTENING')mode('standby')}}
+$('mic').addEventListener('click',()=>{if(!rec){add('このブラウザでは音声入力が使えないみたいだ。文字で話しかけてくれ。','bot');return}try{mode('listening');$('mic').classList.add('recording');rec.start()}catch{mode('standby')}});
+if('serviceWorker'in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script></body></html>
